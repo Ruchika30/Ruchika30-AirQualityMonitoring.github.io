@@ -1,0 +1,51 @@
+#container{
+  max-width: 960px;
+}
+
+#tableContainer {
+  border-collapse: collapse;
+  margin: auto;
+  width:50%;
+  flex: 1
+}
+
+#tableContainer td,
+#tableContainer th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.dropdown{
+  padding: 2px 7px;
+    border-radius: 5px;
+    width: 30%;
+    background: #14A2B8;
+    color: white;
+    font-weight: bold;
+    border: 0
+}
+
+#tableContainer tr:hover {
+  background-color: #ddd;
+}
+
+#tableContainer th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  color: black;
+}
+
+
+.graphContainer{
+  flex: 1.5;
+  display: 'flex';
+  flex-direction: 'column';
+   margin: 'auto';
+}
+
+.wrapper{
+  display: 'flex';  
+  flex-direction: 'column';
+ width: '100%'
+}
