@@ -20,15 +20,3 @@ code {
   display: none;
 }
 /*  */
-
-
-@font-face {
-  font-family: 'nunito';
-  src: url(./assets/fonts/NunitoSans-Regular.ttf);
-}
-
-
-@font-face {
-  font-family: 'oswald';
-  src: url(./assets/fonts/Oswald-VariableFont_wght.ttf);
-}
