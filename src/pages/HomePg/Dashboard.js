@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { getTxtColor, cities } from '../../helpers/utils'
-import { w3cwebsocket as W3CWebSocket } from "websocket";
+import { w3cwebsocket as socket } from "websocket";
 import { LineChart, CartesianGrid, XAxis, YAxis, BarChart, Bar, Line, ResponsiveContainer, Tooltip, } from 'recharts'
 import './style.css'
 
-const ws = new W3CWebSocket('ws:/city-ws.herokuapp.com');
+
+let protocol = window.location.protocol === 'https:' ? 'wss' : 'ws',
+    ws = new socket(`${protocol}:/city-ws.herokuapp.com`);
+
 
 const CtrlBoard = () => {
     const [updatedTime, setupdatedTime] = useState('')
