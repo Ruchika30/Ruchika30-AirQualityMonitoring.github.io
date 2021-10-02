@@ -1,5 +1,6 @@
 # Click below link to preview
 https://aqi--monitoring.herokuapp.com/
+Heroku is used as the deployment platform
 
 # Tech stack used
 1. [Create React App](https://create-react-app.dev/docs/getting-started/)
