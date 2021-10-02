@@ -1,7 +1,6 @@
 # Click below link to preview
 https://aqi--monitoring.herokuapp.com/
 
-
 # Tech stack used
 Create React App
 RechartsJS for charts
