@@ -1,6 +1,6 @@
-# The assignment is deployed in below netlify link. Click to preview
+# The assignment is deployed in below link. Click to preview
 
-https://distracted-poincare-cece6e.netlify.app/
+
 
 # Getting Started with Create React App
 

@@ -11,7 +11,6 @@ const App = () => {
       <Suspense fallback={<div className="loader centerLoader" />}>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          {/* <Route exact path="/graph" component={Graph} /> */}
         </Switch>
       </Suspense>
     </Router>
