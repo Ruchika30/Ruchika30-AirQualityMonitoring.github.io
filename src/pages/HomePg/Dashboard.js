@@ -13,6 +13,10 @@ const CtrlBoard = () => {
     const [updatedTime, setupdatedTime] = useState('')
     const [cityWiseAqiDetails, setCityWiseAqiDetails] = useState([])
     const [selectedCity, setCityName] = useState('Mumbai')
+    const [selectedCity1, setSelectedCity1] = useState('Mumbai')
+    const [selectedCity2, setSelectedCity2] = useState('Mumbai')
+    const [cityOneData, setCityOneData] = useState([])
+    const [cityTwoData, setCityTwoData] = useState([])
     const [apiResponse, setResponse] = useState([])
     const [socketConnected, setSocketConnection] = useState(false)
     const [graphdata, setGraphData] = useState([{
@@ -50,17 +54,42 @@ const CtrlBoard = () => {
                     }
                 })
                 if (cityAQIDetails)
+                    // of the form [{ aqi: '';, city:'', aqiList: [] }]
                     setCityWiseAqiDetails(cityAQIDetails)
             }
         })
     }
+
+    const handleCity1 = () => {
+        cityWiseAqiDetails.filter((item) => {
+            if (item.city == selectedCity1) {
+                setCityOneData(item.aqiList)
+            }
+
+        })
+    }
+
+    const handleCity2 = () => {
+        cityWiseAqiDetails.filter((item) => {
+            if (item.city == selectedCity2) {
+                setCityTwoData(item.aqiList)
+            }
+
+        })
+    }
+    useEffect(() => {
+        handleCity2()
+    }, [selectedCity2])
+
+    useEffect(() => {
+        handleCity1()
+    }, [selectedCity1])
 
     const checkIfMatchesSelectedCity = () => {
         apiResponse?.filter((item) => {
             if (item.city == selectedCity) {
                 if (graphdata.length > 30)
                     setGraphData(currentData => [...currentData.splice(0, currentData.length - 30), item])
-
                 setGraphData(currentData => [...currentData, item])
             }
         })
@@ -184,16 +213,80 @@ const CtrlBoard = () => {
                                         <Line type="monotone" dataKey="aqi" />
                                     </LineChart>
 
-                                    <BarChart width={1000} height={100} data={cityWiseAqiDetails}>
-                                        <Bar dataKey="aqi" fill="#8884d8" />
-                                    </BarChart>
+
+                                    <div style={{ margin: '5% 0%' }}>
+                                        <h2>Comparing cities</h2>
+
+                                        <div style={{ display: 'flex' }}>
+                                            <div>
+                                                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                                                    <div style={{ marginRight: '10px' }}>Choose City1</div>
+                                                    <select id="cars" onChange={(e) => setSelectedCity1(e.target.value)} value={selectedCity1} className="dropdown">
+                                                        {cities.map((city, index) => (
+                                                            <option value={city} key={index + city} className="dropdown-item" type="button" >{city}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+
+                                                <BarChart
+                                                    width={500}
+                                                    height={300}
+                                                    data={cityOneData}
+                                                    margin={{
+                                                        top: 5,
+                                                        right: 30,
+                                                        left: 20,
+                                                        bottom: 5,
+                                                    }}
+                                                >
+                                                    <CartesianGrid strokeDasharray="3 3" />
+                                                    <XAxis dataKey="city" />
+                                                    <YAxis />
+                                                    <Tooltip />
+                                                    <Bar dataKey="aqi" fill="#8884d8" />
+                                                </BarChart>
+
+                                            </div>
+
+                                            <div>
+                                                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                                                    <div style={{ marginRight: '10px' }}>Choose City2</div>
+                                                    <select id="cars" onChange={(e) => setSelectedCity2(e.target.value)} value={selectedCity2} className="dropdown">
+                                                        {cities.map((city, index) => (
+                                                            <option value={city} key={index + city} className="dropdown-item" type="button" >{city}</option>
+                                                        ))}
+                                                    </select>
+                                                </div>
+
+                                                <BarChart
+                                                    width={500}
+                                                    height={300}
+                                                    data={cityTwoData}
+                                                    margin={{
+                                                        top: 5,
+                                                        right: 30,
+                                                        left: 20,
+                                                        bottom: 5,
+                                                    }}
+                                                >
+                                                    <CartesianGrid strokeDasharray="3 3" />
+                                                    <XAxis dataKey="city" />
+                                                    <YAxis />
+                                                    <Tooltip />
+                                                    <Bar dataKey="aqi" fill="#8884d8" />
+                                                </BarChart>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
                                 </>
                                 : null
                             }
                         </div>
                     </tbody>
                 </table>
-            </div>
+            </div >
         )
     }
 
