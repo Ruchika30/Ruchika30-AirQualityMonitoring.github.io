@@ -2,6 +2,9 @@
 https://aqi--monitoring.herokuapp.com/
 Heroku is used as the deployment platform
 
+This is an Air Quality monitoring app of different cities. Air quality if a city can be monitored with the help of various color indicators. Red indication worse.
+There is also live monitoring which can be done for a particluar city. Also Air quality indexes of 2 cities can be compared
+
 # Tech stack used
 1. [Create React App](https://create-react-app.dev/docs/getting-started/)
 2. [Recharts](https://recharts.org/en-US/)
